@@ -8,9 +8,6 @@ router.route("/").get(campusController.getAllCampuses);
 // POST api/campuses/
 router.route("/").post(campusController.addCampus);
 
-// GET api/campuses/:id
-router.route("/:id").get(campusController.getCampusById);
-
 // PUT api/campuses/:id
 router.route("/:id").put(campusController.updateCampusById);
 

@@ -6,8 +6,6 @@ const studentController = require("../controllers/students");
 router.route("/").get(studentController.getAllStudents);
 // POST api/students/
 router.route("/").post(studentController.addStudent);
-// GET api/students/:id
-router.route("/:id").get(studentController.getStudent);
 // PUT api/students/:id
 router.route("/:id").put(studentController.putStudent);
 // DELETE api/students/:id
