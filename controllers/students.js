@@ -21,7 +21,6 @@ async function getAllStudents(req, res, next) {
 // POST api/students/
 async function addStudent(req, res, next) {
 	try {
-		console.log(req.body);
 		const newStudent = await Student.create(req.body);
 		res.status(201).json(newStudent);
 	} catch (err) {
