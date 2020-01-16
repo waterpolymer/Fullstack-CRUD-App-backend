@@ -11,20 +11,28 @@ const Student = db.define("student", {
 		allowNull: false
 	},
 	name: {
-    type: Sequelize.VIRTUAL,
-    get () {
-      return this.getDataValue('firstName') + ' ' + this.getDataValue('lastName')
-    }
-  },
+		type: Sequelize.VIRTUAL,
+		get() {
+			return (
+				this.getDataValue("firstName") + " " + this.getDataValue("lastName")
+			);
+		}
+	},
 	imageUrl: {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
-	email:{
+	email: {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
-
+	gpa: {
+		type: Sequelize.DECIMAL,
+		validate: {
+			min: 0.0,
+			max: 4.0
+		}
+	}
 });
 
 module.exports = Student;
