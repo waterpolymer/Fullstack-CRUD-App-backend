@@ -1,5 +1,9 @@
 const { Student } = require("../database/models");
 
+const studentController = {
+	getAllStudents: getAllStudents
+};
+
 async function getAllStudents(req, res, next) {
 	try {
 		const students = await Student.findAll();
@@ -9,6 +13,4 @@ async function getAllStudents(req, res, next) {
 	}
 }
 
-module.exports = {
-	getAllStudents: getAllStudents
-};
+module.exports = studentController;

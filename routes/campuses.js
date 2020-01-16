@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const studentController = require("../controllers/students");
+// const campusController = require("../controllers/campuses");
 
-router.route("/").get(studentController.getAllStudents);
+// router.route("/").get(campusController.getAllCampuses);
 
 // Export our router, so that it can be imported to construct our apiRouter;
 module.exports = router;
