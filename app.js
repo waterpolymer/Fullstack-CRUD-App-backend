@@ -32,11 +32,11 @@ const syncDatabase = async () => {
 		try {
 			await db.drop();
 			await db.sync({ force: true });
-			await seedDatabase();
+			// await seedDatabase();
 		} catch (err) {
 			if (err.name === "SequelizeConnectionError") {
 				await createLocalDatabase();
-				await seedDatabase();
+				// await seedDatabase();
 			} else {
 				console.log(err);
 			}
