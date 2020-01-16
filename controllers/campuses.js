@@ -1,4 +1,4 @@
-const { Campus } = require("../database/models");
+const { Campus, Student } = require("../database/models");
 
 const campusController = {
 	getAllCampuses: getAllCampuses,
@@ -31,7 +31,7 @@ async function addCampus(req, res, next) {
 // GET api/campuses/:id
 async function getCampusById(req, res, next) {
 	try {
-		const campus = await Campus.findById(req.params.id);
+		const campus = await Campus.findByPk(req.params.id, { include: [Student] });
 		if (campus) {
 			res.status(200).json(campus);
 		} else {
