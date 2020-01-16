@@ -14,7 +14,7 @@ const Campus = db.define("campus", {
     type: Sequelize.STRING,
     allowNull: false
   },
-  image_URL: {
+  imageUrl: {
     type: Sequelize.STRING,
     allowNull: false
   },

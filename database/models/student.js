@@ -16,7 +16,7 @@ const Student = db.define("student", {
       return this.getDataValue('firstName') + ' ' + this.getDataValue('lastName')
     }
   },
-	image_URL: {
+	imageUrl: {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
