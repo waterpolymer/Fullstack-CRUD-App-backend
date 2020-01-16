@@ -24,21 +24,23 @@ const db = require("./database");
 const apiRouter = require("./routes/index");
 
 // A helper function to sync our database;
-const syncDatabase = () => {
+const syncDatabase = async () => {
 	if (process.env.NODE_ENV === "production") {
 		db.sync();
 	} else {
 		console.log("As a reminder, the forced synchronization option is on");
-		db.sync({ force: true })
-			.then(() => seedDatabase())
-			.catch(err => {
-				if (err.name === "SequelizeConnectionError") {
-					createLocalDatabase();
-					seedDatabase();
-				} else {
-					console.log(err);
-				}
-			});
+		try {
+			await db.drop();
+			await db.sync({ force: true });
+			await seedDatabase();
+		} catch (err) {
+			if (err.name === "SequelizeConnectionError") {
+				await createLocalDatabase();
+				await seedDatabase();
+			} else {
+				console.log(err);
+			}
+		}
 	}
 };
 
