@@ -1,8 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const StudentController = require("../controllers/students");
+const studentController = require("../controllers/students");
 
-router.route("/").get(StudentController.getAllStudents);
+// GET api/students/
+router.route("/").get(studentController.getAllStudents);
+// POST api/students/
+router.route("/").post(studentController.addStudent);
+// GET api/students/:id
+router.route("/:id").get(studentController.getStudent);
+// PUT api/students/:id
+router.route("/:id").put(studentController.putStudent);
+// DELETE api/students/:id
+router.route("/:id").delete(studentController.deleteStudent);
 
 // Export our router, so that it can be imported to construct our apiRouter;
 module.exports = router;
