@@ -5,7 +5,7 @@ const studentController = {
 	addStudent: addStudent,
 	getStudent: getStudent,
 	putStudent: putStudent,
-	deleteStudent: deleteStudent,
+	deleteStudent: deleteStudent
 };
 
 // GET api/students/
@@ -21,6 +21,7 @@ async function getAllStudents(req, res, next) {
 // POST api/students/
 async function addStudent(req, res, next) {
 	try {
+		console.log(req.body);
 		const newStudent = await Student.create(req.body);
 		res.status(201).json(newStudent);
 	} catch (err) {
@@ -29,14 +30,13 @@ async function addStudent(req, res, next) {
 }
 
 // GET api/students/:id
-async function getStudent(req, res, next){
-	try{
+async function getStudent(req, res, next) {
+	try {
 		let student = await Student.findById(req.params.id, { include: [Campus] });
-		if(student){
+		if (student) {
 			res.json(student);
-		}
-		else{
-			res.status(404).send('Student not found');
+		} else {
+			res.status(404).send("Student not found");
 		}
 	} catch (err) {
 		console.log(err);
@@ -44,29 +44,27 @@ async function getStudent(req, res, next){
 }
 
 // PUT api/students/:id
-async function putStudent(req, res, next){
-	try{
+async function putStudent(req, res, next) {
+	try {
 		let updatedStudentInfo = await Student.update(req.body, {
-			where: {id: req.params.id},
+			where: { id: req.params.id },
 			returning: true,
 			plain: true
 		});
 		res.status(200).json(updatedStudentInfo[1]);
-	}
-	catch (err) {
+	} catch (err) {
 		next(err);
 	}
 }
 
 // DELETE api/students/:id
-async function deleteStudent(req, res, next){
-	try{
+async function deleteStudent(req, res, next) {
+	try {
 		const deleteCount = await Student.destroy({
-			where: {id: req.params.id},
+			where: { id: req.params.id }
 		});
-		res.sendStatus(204)
-	}
-	catch (err) {
+		res.sendStatus(204);
+	} catch (err) {
 		next(err);
 	}
 }
